@@ -14,3 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+
+// 用户
+$router->get('/user','UserController@index');
