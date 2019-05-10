@@ -15,6 +15,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+// 对称加密
+$router->post('/user/decrypt','UserController@decrypt');
 
-// 用户
-$router->get('/user','UserController@index');
+// 非对称解密
+$router->post('/user/dec','UserController@keyDecrypt');
