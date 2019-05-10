@@ -20,3 +20,6 @@ $router->post('/user/decrypt','UserController@decrypt');
 
 // 非对称解密
 $router->post('/user/dec','UserController@keyDecrypt');
+
+// 验证签名
+$router->post('/user/sign','UserController@checkSign');

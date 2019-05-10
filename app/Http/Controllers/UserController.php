@@ -42,7 +42,28 @@ class UserController
     }
 
     // 验证签名
-    public function checksign(){
+    public function checkSign(){
+        // 接收签名和数据
+        $sign = $_GET['sign'];
+        $data = file_get_contents('php://input');
 
+        // 判断
+        if(empty($sign) || empty($data)){
+            die('参数错误，请重新操作');
+        }
+
+        // 获取公钥
+        $key = openssl_get_publickey('file://'.storage_path('app/keys/public.pem'));
+
+        // 验证签名
+        $res = openssl_verify($data,base64_decode($sign),$key);
+
+        if($res != 1){
+            // TODO 失败
+            die('验签失败');
+        }else{
+            // TODO 成功
+            echo 'ok';
+        }
     }
 }
