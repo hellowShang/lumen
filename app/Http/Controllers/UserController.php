@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 
-class UserController
+class UserController  extends Controller
 {
     // 对称解密
     public function decrypt(){

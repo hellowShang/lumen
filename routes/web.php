@@ -23,3 +23,7 @@ $router->post('/user/dec','UserController@keyDecrypt');
 
 // 验证签名
 $router->post('/user/sign','UserController@checkSign');
+
+// 测试
+//注册
+$router->post('/reg','TestController@register');
