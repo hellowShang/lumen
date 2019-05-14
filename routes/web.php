@@ -27,3 +27,9 @@ $router->post('/user/sign','UserController@checkSign');
 // 测试
 //注册
 $router->post('/reg','TestController@register');
+
+// 登录
+$router->post('/login','TestController@login');
+
+// redis 测试
+$router->get('/test','TestController@test');
