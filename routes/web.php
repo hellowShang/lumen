@@ -16,13 +16,13 @@ $router->get('/', function () use ($router) {
 });
 
 // 对称加密
-$router->post('/user/decrypt','UserController@decrypt');
+$router->post('/user/decrypt','RyptController@decrypt');
 
 // 非对称解密
-$router->post('/user/dec','UserController@keyDecrypt');
+$router->post('/user/dec','RyptController@keyDecrypt');
 
 // 验证签名
-$router->post('/user/sign','UserController@checkSign');
+$router->post('/user/sign','RyptController@checkSign');
 
 // 测试
 //注册
@@ -33,3 +33,9 @@ $router->post('/login','TestController@login');
 
 // redis 测试
 $router->get('/test','TestController@test');
+
+// 用户
+// 注册
+$router->post('/user/register','UserController@register');
+// 登录
+$router->post('/user/login','UserController@login');
