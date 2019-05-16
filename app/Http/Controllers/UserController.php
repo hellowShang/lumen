@@ -17,7 +17,7 @@ class UserController  extends Controller
 {
 
 
-    // 注册
+    // 注册接口
     public function register(Request $request){
         $data = $_POST;
         $str = json_encode($data);
@@ -26,7 +26,7 @@ class UserController  extends Controller
         echo $response;
     }
 
-    // 登录
+    // 登录接口
     public function login(){
         $data = $_POST;
         $str = json_encode($data);
@@ -35,7 +35,7 @@ class UserController  extends Controller
         echo $response;
     }
 
-    // 获取用户信息
+    // 获取用户信息接口
     public function getUserInfo(){
         $id = $_GET['id'];
         $userInfo = DB::table('userinfo')->where(['id' => $id])->first();
@@ -44,6 +44,17 @@ class UserController  extends Controller
             die(json_encode(['errcode' => 0,'data' => $data],JSON_UNESCAPED_UNICODE));
         }else{
             die(json_encode(['errcode' => 50000,'msg' => '数据不存在'],JSON_UNESCAPED_UNICODE));
+        }
+    }
+
+    // 获取商品数据接口
+    public function getGoodsInfo(){
+        echo 123;die;
+        $goodsInfo = DB::table('shop_goods')->get();
+        if($goodsInfo){
+            die(json_encode(['errcode' => 50000,'data' => ['goodsinfo' => $goodsInfo]],JSON_UNESCAPED_UNICODE));
+        }else{
+            die(json_encode(['errcode' => 50000,'msg' => '暂时没有数据'],JSON_UNESCAPED_UNICODE));
         }
     }
 }

@@ -23,8 +23,11 @@ class CheckTokenMiddleware
         if(empty($token) || empty($id)){
             die(json_encode(['errcode' => 40001,'msg' => '参数不完整'],JSON_UNESCAPED_UNICODE));
         }
-        if($token != $redis_token){
+        if(empty($redis_token)){
             die(json_encode(['errcode' => 40008,'msg' => 'token过期'],JSON_UNESCAPED_UNICODE));
+        }
+        if($token != $redis_token){
+            die(json_encode(['errcode' => 40009,'msg' => '无效的token'],JSON_UNESCAPED_UNICODE));
         }
         return $next($request);
     }

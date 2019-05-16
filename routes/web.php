@@ -44,4 +44,7 @@ $router->post('/user/login','UserController@login');
 $router->group(['middleware' => 'token'],function() use ($router){
     // 个人中心
     $router->get('/user/userinfo','UserController@getUserInfo');
+
+    // 获取商品信息
+    $router->get('/goodsinfo','UserController@getGoodsInfo');
 });
