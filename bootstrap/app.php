@@ -57,15 +57,13 @@ $app->singleton(
 */
 
  $app->middleware([
-     App\Http\Middleware\ExampleMiddleware::class
+     App\Http\Middleware\EnableCrossRequestMiddleware::class,
+//     App\Http\Middleware\ExampleMiddleware::class
  ]);
 
-// $app->routeMiddleware([
+ $app->routeMiddleware([
+     'token' => \App\Http\Middleware\CheckTokenMiddleware::class,
 //     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
-
-$app->Middleware([
-     App\Http\Middleware\EnableCrossRequestMiddleware::class,
  ]);
 
 /*

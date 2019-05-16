@@ -39,3 +39,9 @@ $router->get('/test','TestController@test');
 $router->post('/user/register','UserController@register');
 // 登录
 $router->post('/user/login','UserController@login');
+
+// 验证token
+$router->group(['middleware' => 'token'],function() use ($router){
+    // 个人中心
+    $router->get('/user/userinfo','UserController@getUserInfo');
+});

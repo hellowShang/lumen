@@ -21,6 +21,5 @@ class EnableCrossRequestMiddleware
             $response = $next($request);
         }
         return $response;
-
     }
 }
