@@ -56,4 +56,18 @@ class UserController  extends Controller
             die(json_encode(['errcode' => 50000,'msg' => '暂时没有数据'],JSON_UNESCAPED_UNICODE));
         }
     }
+
+    // 获取单个商品数据接口
+    public function getGoodsDetail(Request $request){
+        $id = $request->input('id');
+        if(empty($id)){
+            die(json_encode(['errcode' => 40001,'msg' => '缺少参数'],JSON_UNESCAPED_UNICODE));
+        }
+        $goodsInfo = DB::table('shop_goods')->where(['goods_id' => $id])->first();
+        if($goodsInfo){
+            die(json_encode(['errcode' => 0,'data' => ['goodsinfo' => $goodsInfo]],JSON_UNESCAPED_UNICODE));
+        }else{
+            die(json_encode(['errcode' => 50000,'msg' => '暂时没有数据'],JSON_UNESCAPED_UNICODE));
+        }
+    }
 }

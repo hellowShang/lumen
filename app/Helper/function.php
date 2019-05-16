@@ -28,17 +28,17 @@ function  curl($url,$data){
     curl_close($ch);
 }
 
-function curlGet($url,$data){
-    // 1. 拼接url
-    $str = '?';
-    foreach($data as $k=> $v){
-        $str .=  $k . '=' . $v . '&';
-    }
-    $str = rtirm($str,'&');
-    $url = $url . $str;
-
-    // 2. 初始化
-    $ch = curl_init();
-
-    curl_setopt($ch,CURLOPT_URL,$url);
-}
+//function curlGet($url,$data){
+//    // 1. 拼接url
+//    $str = '?';
+//    foreach($data as $k=> $v){
+//        $str .=  $k . '=' . $v . '&';
+//    }
+//    $str = rtirm($str,'&');
+//    $url = $url . $str;
+//
+//    // 2. 初始化
+//    $ch = curl_init();
+//
+//    curl_setopt($ch,CURLOPT_URL,$url);
+//}
