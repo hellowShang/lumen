@@ -21,7 +21,7 @@ class CheckTokenMiddleware
         $key = 'token_'.$id;
         $redis_token = base64_encode(Redis::get($key));
         if(empty($token) || empty($id)){
-            die(json_encode(['errcode' => 40007,'msg' => '参数错误'],JSON_UNESCAPED_UNICODE));
+            die(json_encode(['errcode' => 40001,'msg' => '参数不完整'],JSON_UNESCAPED_UNICODE));
         }
         if($token != $redis_token){
             die(json_encode(['errcode' => 40008,'msg' => 'token过期'],JSON_UNESCAPED_UNICODE));
