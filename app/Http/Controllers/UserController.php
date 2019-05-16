@@ -21,7 +21,7 @@ class UserController  extends Controller
     public function register(Request $request){
         $data = $_POST;
         $str = json_encode($data);
-        $url = "http://passport.1809a.com/user/register";
+        $url = "http://passport.lab993.com/user/register";
         $response = curl($url,$str);
         echo $response;
     }
@@ -30,7 +30,7 @@ class UserController  extends Controller
     public function login(){
         $data = $_POST;
         $str = json_encode($data);
-        $url = "http://passport.1809a.com/user/login";
+        $url = "http://passport.lab993.com/user/login";
         $response = curl($url,$str);
         echo $response;
     }
