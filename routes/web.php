@@ -47,4 +47,7 @@ $router->group(['middleware' => 'token'],function() use ($router){
 
     // 获取商品信息
     $router->get('/goodsinfo','UserController@getGoodsInfo');
+
+    // 获取商品信息
+    $router->get('/goodsdetail','UserController@getGoodsDetail');
 });
