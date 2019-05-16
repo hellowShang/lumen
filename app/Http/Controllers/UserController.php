@@ -49,10 +49,9 @@ class UserController  extends Controller
 
     // 获取商品数据接口
     public function getGoodsInfo(){
-        echo 123;die;
         $goodsInfo = DB::table('shop_goods')->get();
         if($goodsInfo){
-            die(json_encode(['errcode' => 50000,'data' => ['goodsinfo' => $goodsInfo]],JSON_UNESCAPED_UNICODE));
+            die(json_encode(['errcode' => 0,'data' => ['goodsinfo' => $goodsInfo]],JSON_UNESCAPED_UNICODE));
         }else{
             die(json_encode(['errcode' => 50000,'msg' => '暂时没有数据'],JSON_UNESCAPED_UNICODE));
         }
