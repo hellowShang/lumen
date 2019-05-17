@@ -56,4 +56,7 @@ $router->group(['middleware' => 'token'],function() use ($router){
 
     // 购物车数据展示
     $router->get('/cartlist','UserController@cartList');
+
+    // 订单生成
+    $router->get('/ordergenerate','UserController@orderGenerate');
 });
