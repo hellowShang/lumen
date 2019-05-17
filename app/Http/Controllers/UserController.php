@@ -21,7 +21,7 @@ class UserController  extends Controller
     public function register(Request $request){
         $data = $_POST;
         $str = json_encode($data);
-        $url = "http://passport.lab993.com/user/register";
+        $url = env('HTTP_PATH')."/user/register";
         $response = curl($url,$str);
         echo $response;
     }
@@ -30,7 +30,7 @@ class UserController  extends Controller
     public function login(){
         $data = $_POST;
         $str = json_encode($data);
-        $url = "http://passport.lab993.com/user/login";
+        $url = env('HTTP_PATH')."/user/login";
         $response = curl($url,$str);
         echo $response;
     }
@@ -38,37 +38,49 @@ class UserController  extends Controller
     // 获取用户信息接口
     public function getUserInfo(){
         $id = $_GET['id'];
-        $userInfo = DB::table('userinfo')->where(['id' => $id])->first();
-        if($userInfo){
-            $data = json_decode(json_encode($userInfo),true);
-            die(json_encode(['errcode' => 0,'data' => $data],JSON_UNESCAPED_UNICODE));
-        }else{
-            die(json_encode(['errcode' => 50000,'msg' => '数据不存在'],JSON_UNESCAPED_UNICODE));
-        }
+        $url = env('HTTP_PATH').'/user/userInfo';
+        $response = curlGet($url,['id' => $id]);
+        echo $response;
     }
 
     // 获取商品数据接口
     public function getGoodsInfo(){
-        $goodsInfo = DB::table('shop_goods')->limit(5)->get();
-        if($goodsInfo){
-            die(json_encode(['errcode' => 0,'data' => ['goodsinfo' => $goodsInfo]],JSON_UNESCAPED_UNICODE));
-        }else{
-            die(json_encode(['errcode' => 50000,'msg' => '暂时没有数据'],JSON_UNESCAPED_UNICODE));
-        }
+        $url = env('HTTP_PATH').'/user/goodsInfo';
+        $response = curlGet($url);
+        echo $response;
     }
 
     // 获取单个商品数据接口
     public function getGoodsDetail(){
-        dd($_GET);
-        $id = $_GET('goods_id');
-        if(empty($id)){
-            die(json_encode(['errcode' => 40001,'msg' => '缺少参数'],JSON_UNESCAPED_UNICODE));
-        }
-        $goodsInfo = DB::table('shop_goods')->where(['goods_id' => $id])->first();
-        if($goodsInfo){
-            die(json_encode(['errcode' => 0,'data' => ['goodsinfo' => $goodsInfo]],JSON_UNESCAPED_UNICODE));
-        }else{
-            die(json_encode(['errcode' => 50000,'msg' => '暂时没有数据'],JSON_UNESCAPED_UNICODE));
-        }
+        $id = $_GET['goods_id'];
+        $url = env('HTTP_PATH').'/user/goodsDetail';
+        $response = curlGet($url,['id' => $id]);
+        echo $response;
+    }
+
+    // 加入购物车接口
+    public function joinCart(){
+        $goods_id = $_GET['goods_id'];
+        $id = $_GET['id'];
+
+        // 获取单个商品并添加当前用户id
+        $url = env('HTTP_PATH').'/user/goodsDetail';
+        $response = curlGet($url,['id' => $goods_id]);
+        $data = json_decode($response);
+        $data->user_id = $id;
+        $json_str = json_encode($data,JSON_UNESCAPED_UNICODE);
+
+        // 加入购物车
+        $urll = env('HTTP_PATH').'/user/joinCart';
+        $response1 = curl($urll,$json_str);
+        echo $response1;
+    }
+
+    // 购物车数据展示接口
+    public function cartList(){
+        $id = $_GET['id'];
+        $url = env('HTTP_PATH').'/user/cartInfo';
+        $response = curlGet($url,['uid' => $id]);
+        echo $response;
     }
 }

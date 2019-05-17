@@ -48,6 +48,12 @@ $router->group(['middleware' => 'token'],function() use ($router){
     // 获取商品信息
     $router->get('/goodsinfo','UserController@getGoodsInfo');
 
-    // 获取商品信息
+    // 获取单个商品信息
     $router->get('/goodsdetail','UserController@getGoodsDetail');
+
+    // 加入购物车
+    $router->get('/joincart','UserController@joinCart');
+
+    // 购物车数据展示
+    $router->get('/cartlist','UserController@cartList');
 });
