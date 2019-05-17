@@ -46,17 +46,17 @@ $router->group(['middleware' => 'token'],function() use ($router){
     $router->get('/user/userinfo','UserController@getUserInfo');
 
     // 获取商品信息
-    $router->get('/goodsinfo','UserController@getGoodsInfo');
+    $router->get('/goodsinfo','GoodsController@getGoodsInfo');
 
     // 获取单个商品信息
-    $router->get('/goodsdetail','UserController@getGoodsDetail');
+    $router->get('/goodsdetail','GoodsController@getGoodsDetail');
 
     // 加入购物车
-    $router->get('/joincart','UserController@joinCart');
+    $router->get('/joincart','CartController@joinCart');
 
     // 购物车数据展示
-    $router->get('/cartlist','UserController@cartList');
+    $router->get('/cartlist','CartController@cartList');
 
     // 订单生成
-    $router->get('/ordergenerate','UserController@orderGenerate');
+    $router->get('/ordergenerate','OrderController@orderGenerate');
 });
