@@ -49,7 +49,7 @@ class UserController  extends Controller
 
     // 获取商品数据接口
     public function getGoodsInfo(){
-        $goodsInfo = DB::table('shop_goods')->get();
+        $goodsInfo = DB::table('shop_goods')->limit(5)->get();
         if($goodsInfo){
             die(json_encode(['errcode' => 0,'data' => ['goodsinfo' => $goodsInfo]],JSON_UNESCAPED_UNICODE));
         }else{
@@ -58,8 +58,9 @@ class UserController  extends Controller
     }
 
     // 获取单个商品数据接口
-    public function getGoodsDetail(Request $request){
-        $id = $request->input('id');
+    public function getGoodsDetail(){
+        dd($_GET);
+        $id = $_GET('goods_id');
         if(empty($id)){
             die(json_encode(['errcode' => 40001,'msg' => '缺少参数'],JSON_UNESCAPED_UNICODE));
         }
