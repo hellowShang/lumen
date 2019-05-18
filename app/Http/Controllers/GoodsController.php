@@ -7,7 +7,7 @@ class GoodsController extends Controller
 {
     // 获取商品数据接口
     public function getGoodsInfo(){
-        $url = env('HTTP_PATH').'/user/goodsInfo';
+        $url = env('HTTP_PATH').'/goodsInfo';
         $response = curlGet($url);
         echo $response;
     }
@@ -15,7 +15,7 @@ class GoodsController extends Controller
     // 获取单个商品数据接口
     public function getGoodsDetail(){
         $id = $_GET['goods_id'];
-        $url = env('HTTP_PATH').'/user/goodsDetail';
+        $url = env('HTTP_PATH').'/goodsDetail';
         $response = curlGet($url,['id' => $id]);
         echo $response;
     }
