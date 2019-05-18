@@ -59,10 +59,4 @@ $router->group(['middleware' => 'token'],function() use ($router){
 
     // 订单生成
     $router->get('/ordergenerate','OrderController@orderGenerate');
-
-    // 支付宝支付
-    $router->get('/alipay','AlipayController@pay');
-
-    // 微信支付
-    $router->get('/wechatpay','WechatController@pay');
 });
